@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "192.168.41.12",
+    "database": "store",
+    "user": "mohamed",
+    "password": "123"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "192.168.41.12",
+    "database": "store_test",
+    "user": "mohamed",
+    "password": "123"
+  }
+
+}
