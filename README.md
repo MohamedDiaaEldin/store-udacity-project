@@ -1,9 +1,10 @@
-auth section 
 
+- design database 
+- migrate database
 
+- implement jwt middelware
+- implement modals and handler for each entity 
 
-/// last section readme 
-database.ts-> connect to postgresql databae using pg
 
 install migration 
     npm install -g db-migrate
