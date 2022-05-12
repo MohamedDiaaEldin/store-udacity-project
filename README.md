@@ -2,8 +2,20 @@
 - design database 
 - migrate database
 
-- implement jwt middelware
 - implement modals and handler for each entity 
+
+    todos 
+        - implement customer hundlers and endpoints 
+        - postman test 
+        - jasmin test 
+
+
+- implement jwt middelware
+
+
+
+
+
 
 
 install migration 
