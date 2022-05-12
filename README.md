@@ -4,13 +4,12 @@
 
 - implement modals and handler for each entity 
 
-    todos 
-        - implement customer hundlers and endpoints 
-        - postman test 
-        - jasmin test 
+  todos :
+    - implement jwt middelware
+    - add it to user routes    
 
 
-- implement jwt middelware
+
 
 
 

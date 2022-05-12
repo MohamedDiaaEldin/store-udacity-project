@@ -1,5 +1,6 @@
 require('dotenv').config()
 import express, {  Request, Response} from 'express'
+import customer_routes from './handlers/customer'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 
@@ -16,8 +17,9 @@ const cors_options = {
 
 app.get('/', (req:Request, res:Response)=>{
     res.send('hi')
-
 })
+
+customer_routes(app)
 
 app.listen(port, host ,  ()=>{
     console.log(`server runing on ${host}:${port}`)
