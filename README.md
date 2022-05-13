@@ -1,20 +1,5 @@
-
-- design database 
-- migrate database
-
-- implement modals and handler for each entity 
-
-  todos :
-    - implement jwt middelware
-    - add it to user routes    
-
-
-
-
-
-
-
-
+TODO
+- implement product models and handlers
 
 
 install migration 

@@ -38,7 +38,7 @@ export class CustomerStore {
         let conn;
         try {
             conn = await pg_pool.connect()
-            const sql = "SELECT  password FROM customers WHERE first_name=$1"
+            const sql = "SELECT  password, id FROM customers WHERE first_name=$1"
 
             const result = await conn.query(sql, [first_name])
             if (result.rows.length) {
