@@ -5,6 +5,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import { verify_middle } from './utilities/verify'
 import { products_routes } from './handlers/products'
+import { orders_handler } from './handlers/orders'
 
 
 const app:express.Application = express()
@@ -30,6 +31,7 @@ app.get('/', verify_middle, (req:Request, res:Response)=>{
 
 customer_routes(app)
 products_routes(app)
+orders_handler(app)
 
 app.listen(port, host ,  ()=>{
     console.log(`server runing on ${host}:${port}`)

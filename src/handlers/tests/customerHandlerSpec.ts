@@ -20,10 +20,12 @@ describe("test customer model", () => {
 
 describe("test customer end points", async () => {
 
-    it("test getring all customers with valid jwt /customers post- index", async (done: DoneFn) => {
+    it("test getting all customers with valid jwt /customers post- index", async (done: DoneFn) => {
         // delete old data 
         const conn = await pg_pool.connect()
-        await conn.query('DELETE FROM customers')
+        await conn.query('DELETE FROM orders;')
+        await conn.query('DELETE FROM products;')
+        await conn.query('DELETE FROM customers;')
         conn.release()
 
         ///  add test data        

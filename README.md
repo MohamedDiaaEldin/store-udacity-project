@@ -1,6 +1,6 @@
 TODO
-- implement product models and handlers
-- product unit test  
+- implement orders modles and handlers
+- implement orders unit tests
 
 
 install migration 
