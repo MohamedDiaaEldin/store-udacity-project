@@ -88,7 +88,6 @@ export class CustomerStore {
 
             // password hashing
             const hashed_pass = bcrypt.hashSync(customer.password + process.env.BCRYPT_PASSWORD, parseInt(String(process.env.SALT_ROUNDS)))
-            console.log(hashed_pass)
             const result = await conn.query(sql, [customer.first_name, customer.last_name, hashed_pass])
             const pro = result.rows[0]
 

@@ -66,8 +66,8 @@ const login = async (req:Request, res:Response)=>{
 
 const customer_routes = (app: Application) => {
   
-    app.get('/customers', verify_middle,  index)
-    app.get('/customers/:id', verify_middle, show)
+    app.post('/customers', verify_middle,  index)
+    app.post('/customers/:id', verify_middle, show)
     app.post('/customers', create)
     app.post('/login', login)    
 }
