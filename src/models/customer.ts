@@ -1,4 +1,4 @@
-import { Pool, PoolClient } from "pg";
+import { Pool} from "pg";
 import pg_pool from "../databse";
 require('dotenv').config()
 const bcrypt = require('bcrypt');
@@ -59,6 +59,7 @@ export class CustomerStore {
             throw new Error('error while validating user ' + error)
         }
     }
+    
     async show(id: number): Promise<Customer> {
         let conn;
         try {

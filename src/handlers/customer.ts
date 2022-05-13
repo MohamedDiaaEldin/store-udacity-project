@@ -1,9 +1,9 @@
-import express, { Request, Response, Application } from 'express'
+import  { Request, Response, Application } from 'express'
 import pg_pool from '../databse'
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
 import { verify_middle } from '../utilities/verify';
-const jwt = require('jsonwebtoken');
+
 
 const customer_store = new CustomerStore(pg_pool)
 

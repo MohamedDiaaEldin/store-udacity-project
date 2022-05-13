@@ -1,5 +1,6 @@
 TODO
 - implement product models and handlers
+- product unit test  
 
 
 install migration 
