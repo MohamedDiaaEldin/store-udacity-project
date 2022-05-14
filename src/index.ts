@@ -12,8 +12,7 @@ const app:express.Application = express()
 const host = '0.0.0.0' 
 const port  = 5000 
 
-//// how to use cors 
-// define cors option
+
 const cors_options = {
     origin:' http://localhost:1234',
     optionsSuccessStatus:200
@@ -21,6 +20,7 @@ const cors_options = {
 
 app.use(express.json())
 
+// alive test 
 app.get('/', verify_middle, (req:Request, res:Response)=>{
     if (12==12){
         res.send('yes')

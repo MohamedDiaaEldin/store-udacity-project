@@ -14,6 +14,7 @@ export class ProductStore {
     constructor(pool: Pool) {
         this.pool = pool;
     }
+
     async index(): Promise<Product[]> {
         let conn;
         try {
@@ -35,6 +36,7 @@ export class ProductStore {
         }
 
     }
+
     async show(id: number): Promise<Product> {
         let conn;
         try {
@@ -54,6 +56,7 @@ export class ProductStore {
             throw new Error('error while selecting product with id ' + err)
         }
     }
+
     async create(product: Product): Promise<Product> {
         let conn;
         try {
@@ -75,23 +78,26 @@ export class ProductStore {
             throw new Error('error while inserting new product, ' + error)
         }
     }
+
     async end() {
         this.pool.end()
     }
 }
 
 
+
+
+
 // const run = async () => {
 
 //     const pro = new ProductStore(pg_pool)
 
+//     pro.create({name:"pc intel i9", price:29000}).then(res=>console.log(res)).catch(err=>console.log(err))
 
-//     // pro.create({name:"laptop", price:1000}).then(res=>console.log(res)).catch(err=>console.log(err))
-
-//     /// test index    
-//     await pro.index().then(res=>console.log(res)).catch(err=>console.log(err))
-
-//     await pro.show(1).then(res=>console.log(res)).catch(err=>console.log(err))
+//     // / test index    
+//     // await pro.index().then(res=>console.log(res)).catch(err=>console.log(err))
+// // 
+//     // await pro.show(1).then(res=>console.log(res)).catch(err=>console.log(err))
 
 //     pro.end()
 // }

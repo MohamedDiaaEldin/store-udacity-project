@@ -19,12 +19,15 @@ const is_valid_loign_data =(data:LoginData)=>{
 
 const index = async (_req: Request, res: Response) => {
     const customers = await customer_store.index()
+
     res.json(customers)
 }
 
-const show = async (req: Request, res: Response) => {
+const show = async (req: Request, res: Response) => {    
+    console.log(req.params.id)
     const customer = await customer_store.show(Number(req.params.id))
-    res.json(customer)
+
+    res.json({"customer":customer})
 }
 
 
@@ -33,9 +36,10 @@ const create = async (req: Request, res: Response) => {
     if (!is_valid_request_data(req.body)) {
         res.statusCode = 400
         res.json({ status_code: 400, message: "bad request" })
+        return
     }
     const new_customer = await customer_store.create(req.body)
-    customer_store.end()
+    
     res.json({ status_code: 200, message: "user added successfully" })
 }
 
@@ -44,6 +48,7 @@ const login = async (req:Request, res:Response)=>{
     if( ! is_valid_loign_data(req.body)){
         res.statusCode = 400
         res.json({ status_code: 400, message: "bad request" })
+        return
     }
 
     // authenticate user 
@@ -66,7 +71,7 @@ const login = async (req:Request, res:Response)=>{
 
 const customer_routes = (app: Application) => {
   
-    app.post('/customers', verify_middle,  index)
+    app.get('/customers', verify_middle,  index)
     app.post('/customers/:id', verify_middle, show)
     app.post('/customers', create)
     app.post('/login', login)    

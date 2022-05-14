@@ -3,7 +3,7 @@ import pg_pool from '../../databse'
 import { is_valid_prodcut_data } from '../../handlers/products'
 import { ProductStore } from '../../models/products'
 
-describe("test customer handler", () => {
+describe("test product handler", () => {
     it("test show", async () => {
 
         const valid_product_data = { name: "mac laptop", price: 25000 }
@@ -48,10 +48,10 @@ describe("test customer handler", () => {
 
     it("POST /products  create test with unvalid jwt", async (done: DoneFn) => {
         // delete old data       
-        const valid_jwt = "eyJhsGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
+        const valid_jwt = "eyJhsGciOiJIdzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
         const new_products = {jwt:valid_jwt, name:"iphone 13", price:3000}
 
-        await axios.post('http://localhost:5000/customers', new_products).then(res => {                  
+        await axios.post('http://localhost:5000/products', new_products).then(res => {                  
         }).catch(err => {
             expect(err.response.status).toBe(401)
         })

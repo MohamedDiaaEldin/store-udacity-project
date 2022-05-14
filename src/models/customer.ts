@@ -66,10 +66,10 @@ export class CustomerStore {
             conn = await this.pool.connect()
             const sql = 'SELECT * FROM customers WHERE id=$1'
             const result = await conn.query(sql, [id])
-            const order = result.rows[0]
-
+            // const order = result.rows[0]
             conn.release()
-            return order
+            console.log(result.rows )
+            return result.rows[0]
         }
         catch (err) {
             if (conn != null) {
@@ -79,6 +79,7 @@ export class CustomerStore {
             throw new Error('error while selecting customer ' + err)
         }
     }
+    
     async create(customer: Customer): Promise<Customer> {
         let conn;
         try {
@@ -114,8 +115,8 @@ export class CustomerStore {
 
 // const run = async () => {
 //     const customer_store = new CustomerStore(pg_pool)
-//     // await customer_store.create({ first_name: "mohamed", last_name: "diaa", password: "mohamed12.." }).then(res => console.log(res)).catch(err => console.log(err))
-//     customer_store.authenticate("mohamed", "mohamed12..").then(res => console.log("returned ", res)).catch(err => console.log(err))
+//     await customer_store.create({ first_name: "abdelrhman", last_name: "ali", password: "adkjahd.." }).then(res => console.log(res)).catch(err => console.log(err))
+    // customer_store.authenticate("mohamed", "mohamed12..").then(res => console.log("returned ", res)).catch(err => console.log(err))
 
     //     await customer_store.index().then(res => {
     //         console.log(res)
@@ -128,7 +129,7 @@ export class CustomerStore {
 
     //     })
 
-    //     await customer_store.show(5).then(res=>console.log(res)).catch(err=>console.log(err))
+        // await customer_store.show(1).then(res=>console.log(res)).catch(err=>console.log(err))
 
 //     customer_store.end()
 // }

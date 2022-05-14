@@ -13,7 +13,8 @@
     "test": "export ENV=test &&  db-migrate up --env test && jasmine-ts",
     "dev": "parcel front_test.html",
     "build_front": "parcel build front_test.html",
-    "run_front": "npm run build_front && npm run dev"
+    "run_front": "npm run build_front && npm run dev",
+    "migrate_all": "db-migrate up:all"
   },
   "author": "Mohamed Diaa",
   "license": "ISC",

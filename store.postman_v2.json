@@ -10,8 +10,11 @@
 			"item": [
 				{
 					"name": "get all customers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -72,7 +75,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\":\"ali\", \n    \"last_name\":\"mohamed\",\n    \"password\":\"123\"\n}",
+							"raw": "{\n    \"first_name\":\"hossam\", \n    \"last_name\":\"ahmed\",\n    \"password\":\"1pass2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,7 +247,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/orders/197",
+							"raw": "http://localhost:5000/orders/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -252,7 +255,36 @@
 							"port": "5000",
 							"path": [
 								"orders",
-								"197"
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\" ,\n    \"customer_id\":3,\n    \"quantity\":3,\n    \"product_id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"orders",
+								""
 							]
 						}
 					},

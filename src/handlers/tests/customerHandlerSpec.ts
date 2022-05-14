@@ -37,23 +37,21 @@ describe("test customer end points", async () => {
         await customer_store.create(first_user)
         await customer_store.create(second_user)
 
-        await axios.post('http://localhost:5000/customers', { jwt: valid_jwt }).then(res => {
-            expect(res.status).toBe(200)
-            expect(res.data.length).toBe(2)
+        await axios.get('http://localhost:5000/customers').then(res => {
+            expect(res.status).toBe(401)            
         }).catch(err => console.log("Error while testing /customers"))
         done()
 
     })
 
-    it("test getring all customers with unvalid jwt /customers post- index", async (done: DoneFn) => {
+    it("test getting all customers with unvalid jwt /customers post- index without user data", async (done: DoneFn) => {
         // delete old data       
         const unvalid_jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-
         await axios.post('http://localhost:5000/customers', { jwt: unvalid_jwt }).then(res => {
 
         }).catch(err => {
-            expect(err.response.status).toBe(401)
-            expect(err.response.data.message).toEqual('Unauthorized')
+            expect(err.response.status).toBe(400)
+            expect(err.response.data.message).toEqual('bad request')
         })
         done()
 
@@ -61,9 +59,13 @@ describe("test customer end points", async () => {
 
     it("test getting customer with id using valid jwt /customers/:id post- index", async (done: DoneFn) => {
         // delete old data       
-        const unvalid_jwt = "eyJhbGcifigIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-
-        await axios.post('http://localhost:5000/customers/2', { jwt: unvalid_jwt}).then(res => {            
+        
+        const new_customer = {
+            first_name:"hossam", 
+            last_name:"ahmed",
+            password:"1pass2"
+        }
+        await axios.post('http://localhost:5000/customers/2', new_customer).then(res => {            
         }).catch(err => {
             expect(err.response.status).toBe(401)
             expect(err.response.data.message).toEqual('Unauthorized')

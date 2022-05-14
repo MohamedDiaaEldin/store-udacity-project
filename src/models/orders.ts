@@ -1,10 +1,9 @@
 import { Pool } from "pg";
 import pg_pool from "../databse";
 
-type OrderInfo = {
-    name: string,
-    quantity: number,
-    total_price: number
+type Order = {
+    id:number,
+    customer_id:number    
 }
 export class OrderStore {
     pool: Pool
@@ -15,13 +14,12 @@ export class OrderStore {
 
     // select by id 
     // return product name , quantity , price  
-
-    async order(user_id: number): Promise<OrderInfo[] | null> {
+    async create(customer_id: number): Promise<Order[] | null> {
         let conn;
         try {
             conn = await this.pool.connect()
-            const sql = "SELECT name , quantity, price FROM orders INNER JOIN  products on products.id = orders.product_id  WHERE orders.user_id=$1 ;"
-            const result = await conn.query(sql, [user_id])
+            const sql = "INSERT INTO orders (customer_id) values ($1) ; "
+            const result = await conn.query(sql, [customer_id])
             conn.release()
 
             if (result.rows.length > 0) {
@@ -42,7 +40,7 @@ export class OrderStore {
 
 // const run = async()=> {
 //     const order_store = new OrderStore(pg_pool)
-//     order_store.order(150).then(res=>console.log("res:", res)).catch(err=>console.log(err))
+//     order_store.create(1)
 //     order_store.end()
 // }
 // run()

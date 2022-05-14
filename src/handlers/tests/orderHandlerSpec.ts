@@ -8,7 +8,6 @@ describe('orders handler test ', () => {
 
         }).catch(err=>{
             expect(err.response.status).toBe(401)
-            expect(err.response.body.message).toEqual('Unauthorized')
         })
 
         done()
