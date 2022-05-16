@@ -62,6 +62,6 @@ const create = async (req: Request, res: Response) => {
 }
 
 export const orders_handler = (app: Application) => {
-    app.post('/orders/:user_id', verify, show)
+    app.get('/orders/:user_id', verify, show)
     app.post('/orders/', verify, create)
 }

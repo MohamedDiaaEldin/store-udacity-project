@@ -5,19 +5,23 @@
 
 
 #  End points
+
+### Login - Logout
+- POST /login
+- get /logout
+
 ### products
 -  GET /products     - index 
 -  GET /prodcuts/:id  - show
 -  POST /prodcuts    - create [token required]
 
+### users
+-  GET /cutsomers     - index [token required] 
+-  GET /cutsomers/:id  - show [token required]
+-  POST /cutsomers     - create  [token required]
 
 ### users
--  POST /cutsomers     - index [token required] 
--  POST /cutsomers/:id  - show [token required]
--  POST /cutsomers     - create  
-
-### users
--  POST /orders/:user_id - show [token required] 
+-  GET /orders/:user_id - show [token required] 
 -  POST /orders/         - create [token required] 
 
 
