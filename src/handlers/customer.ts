@@ -3,6 +3,7 @@ import pg_pool from '../databse'
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
 import { verify } from '../utilities/verify';
+import { bad_request, server_error, success, unauthorized } from './ServerMessages';
 
 
 const customer_store = new CustomerStore(pg_pool)
@@ -18,16 +19,25 @@ const is_valid_loign_data =(data:LoginData)=>{
 
 
 const index = async (_req: Request, res: Response) => {
+    try{
     const customers = await customer_store.index()
-
-    res.json(customers)
+        res.json(customers)
+    }
+    catch(error){
+        console.log('error while get all customers ' + error)
+        res.json(server_error)
+    }
 }
 
-const show = async (req: Request, res: Response) => {    
-    console.log(req.params.id)
-    const customer = await customer_store.show(Number(req.params.id))
-
-    res.json({"customer":customer})
+const show = async (req: Request, res: Response) => {        
+    try{
+        const customer = await customer_store.show(Number(req.params.id))
+        res.json({"customer":customer})    
+    }
+    catch(error){
+        console.log('error while gettting customer by id ' + error)
+        
+    }
 }
 
 
@@ -35,19 +45,19 @@ const create = async (req: Request, res: Response) => {
     // console.log(req.body.email)
     if (!is_valid_request_data(req.body)) {
         res.statusCode = 400
-        res.json({ status_code: 400, message: "bad request" })
+        res.json(bad_request)
         return
     }
     const new_customer = await customer_store.create(req.body)
     
-    res.json({ status_code: 200, message: "user added successfully" })
+    res.json(success)
 }
 
 const login = async (req:Request, res:Response)=>{
     // validate data
     if( ! is_valid_loign_data(req.body)){
         res.statusCode = 400
-        res.json({ status_code: 400, message: "bad request" })
+        res.json(bad_request)
         return
     }
 
@@ -58,15 +68,14 @@ const login = async (req:Request, res:Response)=>{
         // generate jwt 
         const data  = {first_name:req.body.first_name, id:Number(user_data.id)}
         const token = make_jwt(data)    
-
         // send jwt 
         res.cookie('jwt', token)
-        res.json({status_code:200, "jwt":token})
+        res.json(success)
     }
     else{
         // send not valid credintials
         res.statusCode = 401
-        res.json({status_code:401, message:"not authorized user"})
+        res.json(unauthorized)
     }
 }
 const logout = async (req:Request, res:Response)=>{
@@ -74,10 +83,10 @@ const logout = async (req:Request, res:Response)=>{
     res.send('loged out')
 }
 const customer_routes = (app: Application) => {
-  
     app.get('/customers', verify,  index)
-    app.post('/customers/:id', verify, show)
-    app.post('/customers', create)
+    app.get('/customers/:id', verify, show)
+    app.post('/customers', verify, create)
+    /// 
     app.post('/login', login)    
     app.get('/logout', logout)    
 }
