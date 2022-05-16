@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express'
 import customer_routes from './handlers/customer'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import { verify_middle, verify_mid } from './utilities/verify'
+import { verify } from './utilities/verify'
 import { products_routes } from './handlers/products'
 import { orders_handler } from './handlers/orders'
 import { cookie_parser } from './utilities/cookieParser'
@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(cookie_parser)
 
 // alive test 
-app.get('/', verify_middle, (req: Request, res: Response) => {
+app.get('/', verify, (req: Request, res: Response) => {
     if (12 == 12) {
         res.send('yes')
         return
@@ -32,7 +32,7 @@ app.get('/', verify_middle, (req: Request, res: Response) => {
 
 
 
-app.get('/jwt', verify_mid,  (req: Request, res: Response) => {        
+app.get('/jwt', verify,  (req: Request, res: Response) => {        
     res.send('jwt end')
 })
 

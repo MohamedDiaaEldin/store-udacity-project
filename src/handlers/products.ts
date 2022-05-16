@@ -1,6 +1,6 @@
 import { Request, Response, Application } from 'express'
 import pg_pool from '../databse'
-import { verify_middle } from '../utilities/verify';
+import { verify } from '../utilities/verify';
 import { ProductStore, Product } from '../models/products';
 
 const product_store = new ProductStore(pg_pool)
@@ -32,7 +32,7 @@ const create = async (req: Request, res: Response) => {
 export const products_routes = (app: Application) => {
     app.get('/products', index)
     app.get('/products/:id', show)
-    app.post('/products/', verify_middle, create)
+    app.post('/products/', verify, create)
 }
 
 

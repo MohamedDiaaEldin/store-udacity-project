@@ -2,7 +2,7 @@ import { Application, Request, Response } from "express";
 import pg_pool from "../databse";
 import { OrderStore } from "../models/orders";
 import { ProductOrderStore } from "../models/orders_products";
-import { verify_middle } from "../utilities/verify";
+import { verify } from "../utilities/verify";
 
 
 
@@ -46,6 +46,6 @@ const create = async (req: Request, res: Response) => {
 }
 
 export const orders_handler = (app: Application) => {
-    app.post('/orders/:user_id', verify_middle, show)
-    app.post('/orders/', verify_middle, create)
+    app.post('/orders/:user_id', verify, show)
+    app.post('/orders/', verify, create)
 }

@@ -2,7 +2,7 @@ import  { Request, Response, Application } from 'express'
 import pg_pool from '../databse'
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
-import { verify_middle } from '../utilities/verify';
+import { verify } from '../utilities/verify';
 
 
 const customer_store = new CustomerStore(pg_pool)
@@ -75,8 +75,8 @@ const logout = async (req:Request, res:Response)=>{
 }
 const customer_routes = (app: Application) => {
   
-    app.get('/customers', verify_middle,  index)
-    app.post('/customers/:id', verify_middle, show)
+    app.get('/customers', verify,  index)
+    app.post('/customers/:id', verify, show)
     app.post('/customers', create)
     app.post('/login', login)    
     app.get('/logout', logout)    
