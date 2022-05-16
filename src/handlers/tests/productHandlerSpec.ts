@@ -3,6 +3,12 @@ import app from "../../index";
 
 
 describe('Products end point Test ', ()=>{
+    beforeAll( (done)=> {        
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+        done()
+    });
+
+
     ///  GET /products 
     it('GET /products', async function() {              
         await supertest(app).get('/products/').expect(200);
