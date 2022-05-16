@@ -1,89 +1,41 @@
-import pg_pool from '../../databse'
-import { is_valid_request_data } from '../../handlers/customer'
-import { CustomerStore } from '../../models/customer'
-import axios from 'axios'
+import supertest from 'supertest';
+import app from '../../index';
+require('dotenv').config()
 
 
-describe("test customer model", () => {
-
-    it("test show", async () => {
-
-        const valid_user_data = { first_name: "mohamed", last_name: "diaa", password: "123" }
-        const not_valid_user_data = { first_name: "", last_name: "", password: "" }
-
-        expect(is_valid_request_data(valid_user_data)).toBeTruthy()
-        expect(is_valid_request_data(not_valid_user_data)).toBeFalsy()
-    })
-
-})
+describe('/Customer end points - Test ', function() {
 
 
-describe("test customer end points", async () => {
+    // GET /customer test 
+    it('GET /customers  200', async function() {
+      // status code should be 200 `OK`
+      await supertest(app).get('/customers').set('Cookie', [`jwt=${process.env.JWT}`]).expect(200);
+    });
+    it('GET /customers  401 - Unauthorized - without jwt in cookies', async function() {
+      await supertest(app).get('/customers').expect(401);
+    });    
 
-    it("test getting all customers with valid jwt /customers post- index", async (done: DoneFn) => {
-        // delete old data 
-        const conn = await pg_pool.connect()
-        await conn.query('DELETE FROM orders;')
-        await conn.query('DELETE FROM products;')
-        await conn.query('DELETE FROM customers;')
-        conn.release()
 
-        ///  add test data        
-        const customer_store = new CustomerStore(pg_pool)
-        const valid_jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-       
-        const first_user = { first_name: "ali", last_name: "mohamed", password: "ali123.." }
-        const second_user = { first_name: "mohamed", last_name: "diaa", password: "mohamd..123" }
-        await customer_store.create(first_user)
-        await customer_store.create(second_user)
 
-        await axios.get('http://localhost:5000/customers').then(res => {
-            expect(res.status).toBe(401)            
-        }).catch(err => console.log("Error while testing /customers"))
-        done()
+    /// GET /customer:id test 
+    it('GET /customers/:id ', async function() {              
+      await supertest(app).get('/customers/2').set('Cookie', [`jwt=${process.env.JWT}`]).expect(200);
+    });
+    it('GET /customers/:id - without jwt', async function() {              
+      await supertest(app).get('/customers/2').expect(401);
+    });
+  
 
-    })
+    // POST /customer:id
+    const new_customer = {first_name:"user test", last_name:"diaa", password:"1328796465"}
+    it('GET /customers/ ', async function() {              
+        await supertest(app).post('/customers/').set('Cookie', [`jwt=${process.env.JWT}`]).send(new_customer).expect(200);
+      });   
+    it('GET /customers/:id without jwt', async function() {              
+        await supertest(app).get('/customers/2').expect(401);
+      }); 
+      it('GET /customers/:id without jwt - bad request body', async function() {              
+        await supertest(app).post('/customers/').set('Cookie', [`jwt=${process.env.JWT}`]).expect(400);
+      });
 
-    it("test getting all customers with unvalid jwt /customers post- index without user data", async (done: DoneFn) => {
-        // delete old data       
-        const unvalid_jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-        await axios.post('http://localhost:5000/customers', { jwt: unvalid_jwt }).then(res => {
-
-        }).catch(err => {
-            expect(err.response.status).toBe(400)
-            expect(err.response.data.message).toEqual('bad request')
-        })
-        done()
-
-    })
-
-    it("test getting customer with id using valid jwt /customers/:id post- index", async (done: DoneFn) => {
-        // delete old data       
-        
-        const new_customer = {
-            first_name:"hossam", 
-            last_name:"ahmed",
-            password:"1pass2"
-        }
-        await axios.post('http://localhost:5000/customers/2', new_customer).then(res => {            
-        }).catch(err => {
-            expect(err.response.status).toBe(401)
-            expect(err.response.data.message).toEqual('Unauthorized')
-        })
-        done()
-
-    })   
-     it("test creating customer /customers post- index", async (done: DoneFn) => {
-        // delete old data       
-        
-        const new_customer = {first_name:"mohamed", last_name:"ali", password:"strongpassword"}
-
-        await axios.post('http://localhost:5000/customers', new_customer).then(res => {
-            expect(res.status).toBe(200)            
-        }).catch(err => {
-            console.log('error while testing creating new customer')            
-        })
-        done()
-
-    })
-})
+  });

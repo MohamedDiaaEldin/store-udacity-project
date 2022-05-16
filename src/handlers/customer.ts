@@ -1,4 +1,5 @@
 import  { Request, Response, Application } from 'express'
+import { couldStartTrivia } from 'typescript';
 import pg_pool from '../databse'
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
@@ -42,13 +43,20 @@ const show = async (req: Request, res: Response) => {
 
 
 const create = async (req: Request, res: Response) => {
-    // console.log(req.body.email)
-    if (!is_valid_request_data(req.body)) {
-        res.statusCode = 400
-        res.json(bad_request)
-        return
+    try{
+        // console.log(req.body.email)
+        if (!is_valid_request_data(req.body)) {
+            res.statusCode = 400
+            res.json(bad_request)
+            return
+        }
+        const new_customer = await customer_store.create(req.body)
     }
-    const new_customer = await customer_store.create(req.body)
+    catch(error){
+        console.log('error while creating new customer ' + error)
+        res.json(server_error)
+    }
+
     
     res.json(success)
 }

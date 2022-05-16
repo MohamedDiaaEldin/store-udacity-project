@@ -2,7 +2,6 @@ require('dotenv').config()
 import express, { Request, Response } from 'express'
 import customer_routes from './handlers/customer'
 import cors from 'cors'
-import bodyParser from 'body-parser'
 import { verify } from './utilities/verify'
 import { products_routes } from './handlers/products'
 import { orders_handler } from './handlers/orders'
@@ -22,7 +21,7 @@ app.use(express.json())
 app.use(cookie_parser)
 
 // alive test 
-app.get('/', verify, (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     if (12 == 12) {
         res.send('yes')
         return

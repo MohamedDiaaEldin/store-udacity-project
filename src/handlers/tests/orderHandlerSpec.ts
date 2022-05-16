@@ -1,29 +1,13 @@
-import axios from "axios"
+import supertest from "supertest";
+import app from "../../index";
 
-describe('orders handler test ', () => {
+describe('Orders end points Test ', ()=>{
 
-    it(" POST /orders/:user_id test get orders by user id - unvalid jwt", (done: DoneFn) => {
-        const unvalid_jwt = "eyJhbGciUiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmasJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-        axios.post('http://localhost:5000/orders/197', { jwt:unvalid_jwt}).then(res=>{
+    it('GET /orders/:id', async function() {              
+        await supertest(app).get('/customers/2').set('Cookie', [`jwt=${process.env.JWT}`]).expect(200);
+      });
 
-        }).catch(err=>{
-            expect(err.response.status).toBe(401)
-        })
-
-        done()
-    })
-
-    
-    it(" POST /orders/:user_id test get orders by user id - valid jwt - wrong user_id", (done: DoneFn) => {
-
-        const valid_jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8"
-        axios.post('http://localhost:5000/orders/1000', { jwt:valid_jwt}).then(res=>{
-
-        }).catch(err=>{
-            expect(err.response.status).toBe(404)
-        })
-
-        done()
-    })
-
+    it('GET /orders/:id', async function() {              
+        await supertest(app).get('/customers/2').expect(401);
+      });
 })

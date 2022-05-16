@@ -47,3 +47,17 @@
 - quantity : integer
 - order_id : integer  (fk)
 - product_id : integer (fk)
+
+
+### env variables   .env file should include 
+    PORT=5432
+    POSTGRES_HOST=127.0.0.1
+    POSTGRES_DB=store
+    POSTGRES_DB_TEST=store_test
+    POSTGRES_USER=mohamed
+    POSTGRES_PASSWORD=123
+    BCRYPT_PASSWORD=de-pass
+    SALT_ROUNDS=10
+    ENV=dev
+    TOKEN_SECRET=learning 
+    JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI3MzYzOTZ9.Qs2AFuIZA5Y6d-di__CSOg6Rf7bdhE6ReocXZJYrXH4
