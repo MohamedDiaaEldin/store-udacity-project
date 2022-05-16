@@ -5,7 +5,6 @@
 
 
 #  End points
-
 ### products
 -  GET /products     - index 
 -  GET /prodcuts/:id  - show
