@@ -29,4 +29,11 @@
 
 ## project requirments 
 REQUIREMENTS.md 
-database-design directory
+database-design 
+
+## Highlighted changes - review 
+- Mention column type for database schema 
+- Add .env to .gitignore.
+- Use correct HTTP verb for all routes.
+- Use try/catch with async/await functions.
+- Set jwt as a part of headers instead of body. 
