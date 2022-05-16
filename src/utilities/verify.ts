@@ -7,8 +7,8 @@ export const verify_middle = (req: Request, res: Response, next: Function) => {
     if (!(req.body && req.body.jwt)) {
         console.log('there is not jwt')
         res.statusCode = 401
-        res.json({ status_code: 401, message: "Unauthorized" })        
-        
+        res.json({ status_code: 401, message: "Unauthorized" })
+
     }
     else {
         // if not valid jwt 
@@ -23,4 +23,15 @@ export const verify_middle = (req: Request, res: Response, next: Function) => {
         }
     }
 
+}
+
+export const verify_mid = (req: Request, res: Response, next: Function) => {
+    console.log(req.headers.cookie)
+    if (req.cookies && is_valid_jwt(req.cookies.get('jwt'))) {
+        next()
+    }
+    else {
+        res.statusCode = 401
+        res.json({ status_code: 401, message: "Unauthorizedddd" })
+    }
 }

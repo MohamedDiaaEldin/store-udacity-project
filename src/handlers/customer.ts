@@ -60,6 +60,7 @@ const login = async (req:Request, res:Response)=>{
         const token = make_jwt(data)    
 
         // send jwt 
+        res.cookie('jwt', token)
         res.json({status_code:200, "jwt":token})
     }
     else{
@@ -68,13 +69,17 @@ const login = async (req:Request, res:Response)=>{
         res.json({status_code:401, message:"not authorized user"})
     }
 }
-
+const logout = async (req:Request, res:Response)=>{
+    res.clearCookie('jwt')
+    res.send('loged out')
+}
 const customer_routes = (app: Application) => {
   
     app.get('/customers', verify_middle,  index)
     app.post('/customers/:id', verify_middle, show)
     app.post('/customers', create)
     app.post('/login', login)    
+    app.get('/logout', logout)    
 }
 
 export default customer_routes
