@@ -24,23 +24,23 @@
 
 
 ##  Database schema 
-- Cutsomer 
-    id: integer (pk)
-    first_name : varchar(30)
-    last_name : varchar(30)
-    password : varchar(150)
+### Cutsomer 
+- id: integer (pk)
+- first_name : varchar(30)
+- last_name : varchar(30)
+- password : varchar(150)
 
-- products
-    id : integer (pk)
-    name : varchar(100)
-    price : double 
+### products
+- id : integer (pk)
+- name : varchar(100)
+- price : double 
 
-- orders
-    id :integer (pk)
-    customer : customer_id (fk)
+### orders
+- id :integer (pk)
+- customer : customer_id (fk)
 
-- orders_products
-    id : integre  (pk)
-    quantity : integer
-    order_id : integer  (fk)
-    product_id : integer (fk)
+### orders_products
+- id : integre  (pk)
+- quantity : integer
+- order_id : integer  (fk)
+- product_id : integer (fk)
