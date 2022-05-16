@@ -21,8 +21,7 @@
     db-migrate --env dev up:all
     npm run start
 
-## unit tests run
-    npm run start-test
+## unit tests run    
     npm run test
 
     store.postman.json to test all end points locally

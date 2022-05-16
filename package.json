@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "export ENV=dev && ts-node-dev src/index.ts",
-    "start-test": "export ENV=test && ts-node-dev src/index.ts",
+    "start": "export ENV=dev && ts-node-dev src/index.ts",    
     "build": "rm -rf ./dist/* && tsc --build",
     "lint": "eslint . --ext .ts",
     "prettier": "eslint . --ext .ts --fix",

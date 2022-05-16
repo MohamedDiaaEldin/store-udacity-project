@@ -24,6 +24,9 @@
 -  GET /orders/:user_id - show [token required] 
 -  POST /orders/         - create [token required] 
 
+### login - logout 
+- POST /login 
+- GET /logout
 
 
 ##  Database schema 
