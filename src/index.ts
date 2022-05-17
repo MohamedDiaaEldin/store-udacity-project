@@ -1,5 +1,5 @@
 require('dotenv').config()
-import express, { Request, Response } from 'express'
+import express from 'express'
 import customer_routes from './handlers/customer'
 
 import { products_routes } from './handlers/products'
@@ -9,7 +9,6 @@ import { cookie_parser } from './utilities/cookieParser'
 const app: express.Application = express()
 const host = '0.0.0.0'
 const port = 5000
-
 
 const cors_options = {
     origin: ' http://localhost:1234',

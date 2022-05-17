@@ -1,5 +1,4 @@
 import  { Request, Response, Application } from 'express'
-import { couldStartTrivia } from 'typescript';
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
 import { verify } from '../utilities/verify';
@@ -49,15 +48,15 @@ const create = async (req: Request, res: Response) => {
             res.json(bad_request)
             return
         }
+        console.log(req.body)
         const new_customer = await customer_store.create(req.body)
+        res.json(success)
     }
     catch(error){
         console.log('error while creating new customer ' + error)
         res.json(server_error)
     }
 
-    
-    res.json(success)
 }
 
 const login = async (req:Request, res:Response)=>{

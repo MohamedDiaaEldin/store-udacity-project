@@ -11,10 +11,10 @@ describe('/Customer end points - Test ', function() {
       // status code should be 200 `OK`
       await supertest(app).get('/customers').set('Cookie', [`jwt=${process.env.JWT}`]).expect(200);
     });
+
     it('GET /customers  401 - Unauthorized - without jwt in cookies', async function() {
       await supertest(app).get('/customers').expect(401);
     });    
-
 
 
     /// GET /customer:id test 
@@ -26,8 +26,8 @@ describe('/Customer end points - Test ', function() {
     });
   
 
-    // POST /customer:id
-    const new_customer = {first_name:"user test", last_name:"diaa", password:"1328796465"}
+    // POST /customer
+    const new_customer = {first_name:"udacity", last_name:"diaa", password:"1328796465"}
     it('GET /customers/ ', async function() {              
         await supertest(app).post('/customers/').set('Cookie', [`jwt=${process.env.JWT}`]).send(new_customer).expect(200);
       });   

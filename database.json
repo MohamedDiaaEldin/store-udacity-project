@@ -9,7 +9,7 @@
   "test": {
     "driver": "pg",
     "host": {"ENV":"PGHOST"},
-    "database": {"ENV":"PGATABASETEST"},
+    "database": {"ENV":"PGDATABASETEST"},
     "user": {"ENV":"PGUSER"},
     "password": {"ENV":"PGPASSWORD"}
   }

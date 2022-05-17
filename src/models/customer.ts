@@ -40,6 +40,7 @@ export class CustomerStore {
                     return user
                 }
             }            
+            client.release(true)                    
             return null
         }
         catch (error) {

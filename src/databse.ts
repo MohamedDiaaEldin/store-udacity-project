@@ -10,18 +10,18 @@ const {
     PGPORT,
     PGDATABSE,
     PGHOST,
-    POSTGRES_DB_TEST,
+    PGDATABASETEST,
     PGUSER,
     PGPASSWORD
 } = process.env
 
 let pool: Pool;
 
-if (ENV === "test") {
+if (ENV === "test") {    
     pool = new Pool({
         user: PGUSER,
         host: PGHOST,
-        database: POSTGRES_DB_TEST,
+        database: PGDATABASETEST,
         port: (PGPORT as unknown) as number,
         password: PGPASSWORD
     })

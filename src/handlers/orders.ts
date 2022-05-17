@@ -1,5 +1,4 @@
 import { Application, Request, Response } from "express";
-import { OrderStore } from "../models/orders";
 import { ProductOrderStore } from "../models/orders_products";
 import { verify } from "../utilities/verify";
 import { bad_request, not_found, server_error, success } from "./ServerMessages";
