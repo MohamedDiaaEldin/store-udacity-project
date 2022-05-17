@@ -6,6 +6,58 @@
 	},
 	"item": [
 		{
+			"name": "login-logout",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"mohamed\",\n    \"password\":\"mohamed12..\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "customer",
 			"item": [
 				{
@@ -18,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -41,12 +93,15 @@
 				},
 				{
 					"name": "get customer by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +109,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/customers/1",
+							"raw": "http://localhost:5000/customers/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -62,7 +117,7 @@
 							"port": "5000",
 							"path": [
 								"customers",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -97,34 +152,6 @@
 					"response": []
 				},
 				{
-					"name": "login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"first_name\":\"mohamed\",\n    \"password\":\"mohamed12..\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "test",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -134,7 +161,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -206,7 +233,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\",\n    \"name\":\"mobile\" , \n    \"price\":1500\n}",
+							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\",\n    \"name\":\"table\" , \n    \"price\":900\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,7 +266,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,7 +295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jwt\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI0NDQzMDR9.fNEdFZdRQTl3UR54Vh69Ru78XuD_VOuOJ3QJbr5vjc8\" ,\n    \"customer_id\":3,\n    \"quantity\":3,\n    \"product_id\":2\n}",
+							"raw": "{\n    \"customer_id\":3,\n    \"quantity\":3,\n    \"product_id\":2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -291,6 +318,32 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "jwt",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoibW9oYW1lZCIsImlkIjoxLCJpYXQiOjE2NTI3MjQ3MjZ9.LDHL7GdXOun06UgsW-SB4Arf2GLXAxiyz8w--mNnxVA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/jwt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"jwt"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
