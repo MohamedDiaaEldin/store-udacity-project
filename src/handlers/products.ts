@@ -1,10 +1,9 @@
 import { Request, Response, Application } from 'express'
-import pg_pool from '../databse'
 import { verify } from '../utilities/verify';
 import { ProductStore, Product } from '../models/products';
 import { bad_request, server_error, success } from './ServerMessages';
 
-const product_store = new ProductStore(pg_pool)
+const product_store = new ProductStore()
 
 export const is_valid_prodcut_data = (data: Product) => {
     return (data && data.name && data.price) ? true : false

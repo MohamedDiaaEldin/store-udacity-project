@@ -1,5 +1,4 @@
 import { Application, Request, Response } from "express";
-import pg_pool from "../databse";
 import { OrderStore } from "../models/orders";
 import { ProductOrderStore } from "../models/orders_products";
 import { verify } from "../utilities/verify";
@@ -7,7 +6,7 @@ import { bad_request, not_found, server_error, success } from "./ServerMessages"
 
 
 
-const order_store = new ProductOrderStore(pg_pool)
+const order_store = new ProductOrderStore()
 type OrderData = {
     customer_id: number,
     quantity: number,

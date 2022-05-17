@@ -1,38 +1,40 @@
 require('dotenv').config()
-import { Pool } from 'pg'
+import {Pool } from 'pg'
+// const { Client } = require('pg').Client
+
 
 
 const ENV = process.env.ENV
 
 const {
-    PORT,
-    POSTGRES_DB,
-    POSTGRES_HOST,
+    PGPORT,
+    PGDATABSE,
+    PGHOST,
     POSTGRES_DB_TEST,
-    POSTGRES_USER,
-    POSTGRES_PASSWORD
+    PGUSER,
+    PGPASSWORD
 } = process.env
 
-let pg_pool: Pool;
+let pool: Pool;
 
 if (ENV === "test") {
-    pg_pool = new Pool({
-        user: POSTGRES_USER,
-        host: POSTGRES_HOST,
+    pool = new Pool({
+        user: PGUSER,
+        host: PGHOST,
         database: POSTGRES_DB_TEST,
-        port: (PORT as unknown) as number,
-        password: POSTGRES_PASSWORD
+        port: (PGPORT as unknown) as number,
+        password: PGPASSWORD
     })
 }
 else {
-    pg_pool = new Pool({
-        user: POSTGRES_USER,
-        host: POSTGRES_HOST,
-        database: POSTGRES_DB,
-        port: (PORT as unknown) as number,
-        password: POSTGRES_PASSWORD
+    pool = new Pool({
+        user: PGUSER,
+        host: PGHOST,
+        database: PGDATABSE,
+        port: (PGDATABSE as unknown) as number,
+        password: PGPASSWORD
     })
 }
 
 
-export default pg_pool
+export default pool

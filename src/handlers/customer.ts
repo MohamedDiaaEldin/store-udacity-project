@@ -1,13 +1,12 @@
 import  { Request, Response, Application } from 'express'
 import { couldStartTrivia } from 'typescript';
-import pg_pool from '../databse'
 import { Customer, CustomerStore } from '../models/customer'
 import { make_jwt } from '../utilities/auth';
 import { verify } from '../utilities/verify';
 import { bad_request, server_error, success, unauthorized } from './ServerMessages';
 
 
-const customer_store = new CustomerStore(pg_pool)
+const customer_store = new CustomerStore()
 
 type LoginData = {first_name:string, password:string}
 export const is_valid_request_data = (body: Customer): Boolean => {
